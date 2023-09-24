@@ -2,18 +2,25 @@ package Sept22;
 
 class Solution {
     public double findMaxAverage(int[] nums, int k) {
+        // define total sum
         double totalSum = 0.0;
 
+        // add all numbers upto index k (window)
         for (int i = 0 ; i < k; i++) {
             totalSum += nums[i];
         }
+        // current max of the window
         double max = totalSum;
 
+        // start at index k 
+        // then we move up by one
         for (int i = k; i < nums.length; i++) {
+            // add the new num at index, and remove num at index leaving the window
             totalSum += nums[i] - nums[i-k];
+            // find new max, compare window max with highest max found so far
             max = Math.max(max, totalSum);
         }
-
+        // return max divided by window size k
         return max / k;
 
 
